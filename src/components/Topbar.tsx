@@ -1,74 +1,48 @@
 import React from "react";
-import { FontWeights } from "office-ui-fabric-react";
-import {
-  CommandBar,
-  ICommandBarItemProps,
-} from "office-ui-fabric-react/lib/CommandBar";
-import { IButtonProps } from "office-ui-fabric-react/lib/Button";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import ShareIcon from "@material-ui/icons/Share";
 
-const overflowProps: IButtonProps = { ariaLabel: "More commands" };
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
 
-const _items: ICommandBarItemProps[] = [
-//   {
-//     key: "HomePage",
-//     text: "Home",
-//     cacheKey: "myCacheKey2", // changing this key will invalidate this item's cache
-//     iconProps: { iconName: "HomeGroup" },
-//   },
-  {
-    key: "Prediction",
-    text: "Quick Prediction",
-    iconProps: { iconName: "HomeGroup" },
-    href: "/",
-  },
-  {
-    key: "Project",
-    text: "Project",
-    iconProps: { iconName: "MapLayers" },
-    href: "/project",
-  },
-];
+export default function ButtonAppBar() {
+  const classes = useStyles();
 
-const _overflowItems: ICommandBarItemProps[] = [
-  {
-    key: "move",
-    text: "Move to...",
-    onClick: () => console.log("Move to"),
-    iconProps: { iconName: "MoveToFolder" },
-  },
-  {
-    key: "copy",
-    text: "Copy to...",
-    onClick: () => console.log("Copy to"),
-    iconProps: { iconName: "Copy" },
-  },
-  {
-    key: "rename",
-    text: "Rename...",
-    onClick: () => console.log("Rename"),
-    iconProps: { iconName: "Edit" },
-  },
-];
-
-const _farItems: ICommandBarItemProps[] = [
-  {
-    key: "share",
-    text: "Share",
-    ariaLabel: "Share",
-    iconOnly: true,
-    iconProps: { iconName: "Share" },
-    onClick: () => console.log("Share"),
-  },
-];
-
-export const Topbar: React.FunctionComponent = () => {
   return (
-      <CommandBar
-        items={_items}
-        overflowItems={_overflowItems}
-        overflowButtonProps={overflowProps}
-        farItems={_farItems}
-        ariaLabel="Use left and right arrow keys to navigate between commands"
-      />
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="menu"
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" className={classes.title}>
+            Organic Chemistry Reaction Checker
+          </Typography>
+          <IconButton aria-label="upload picture" component="span" style={{color: "white"}}>
+          <ShareIcon />
+        </IconButton>
+        </Toolbar>
+      </AppBar>
+    </div>
   );
-};
+}

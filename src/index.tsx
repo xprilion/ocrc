@@ -1,38 +1,34 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import App from "./App";
-import { Project } from "./Project";
-import { FluentCustomizations } from "@uifabric/fluent-theme";
-import { Customizer, mergeStyles } from "office-ui-fabric-react";
+import { HomePage, ProjectPage } from "./pages";
 import * as serviceWorker from "./serviceWorker";
-import { initializeIcons } from "@uifabric/icons";
-initializeIcons();
+import { Topbar } from "./components";
 
-// Inject some global styles
-mergeStyles({
-  selectors: {
-    ":global(body), :global(html), :global(#root)": {
-      margin: 0,
-      padding: 0,
-      height: "100vh",
-    },
-  },
-});
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container";
+
+import "./index.css";
 
 ReactDOM.render(
-  <Customizer {...FluentCustomizations}>
-    <Router>
-      <Switch>
-        <Route path="/project">
-          <Project />
-        </Route>
-        <Route path="/">
-          <App />
-        </Route>
-      </Switch>
-    </Router>
-  </Customizer>,
+  <>
+    {/* <CssBaseline /> */}
+    <Topbar />
+    <br />
+    <Container maxWidth="lg">
+      <Router>
+        <Switch>
+          <Route path="/project">
+            <ProjectPage />
+          </Route>
+          <Route path="/">
+            <HomePage />
+          </Route>
+        </Switch>
+      </Router>
+    </Container>
+  </>,
   document.getElementById("root")
 );
 
