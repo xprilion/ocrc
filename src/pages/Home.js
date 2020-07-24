@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link as RouterLink } from "react-router-dom";
 import api from "../config";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -6,6 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import Link from "@material-ui/core/Link";
 
 import { withStyles } from "@material-ui/core/styles";
 
@@ -51,18 +53,34 @@ class HomePage extends Component {
       <>
         <div className={classes.root}>
           <Grid container spacing={3}>
-            {this.state.projects.map((project, index) => (
-              <Grid item xs={3}>
-                <Card className={classes.root} variant="outlined">
+            <Grid item sm={6} xs={12} md={4} lg={3}>
+              <Link to="/project" underline="none" component={RouterLink}>
+                <Card className={classes.root} variant="elevation">
                   <CardContent>
-                    <Typography variant="h5" component="h2">
-                      { project.name }
+                    <Typography variant="h6" component="h3">
+                      Create New
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small">Select</Button>
+                    <Button size="small">Create</Button>
                   </CardActions>
                 </Card>
+              </Link>
+            </Grid>
+            {this.state.projects.map((project, index) => (
+              <Grid item sm={6} xs={12} md={4} lg={3} key={index}>
+                <Link to={"/project/" + project.key} underline="none" component={RouterLink}>
+                  <Card className={classes.root} variant="outlined">
+                    <CardContent>
+                      <Typography variant="h6" component="h3">
+                        {project.name}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button size="small">Select</Button>
+                    </CardActions>
+                  </Card>
+                </Link>
               </Grid>
             ))}
           </Grid>
