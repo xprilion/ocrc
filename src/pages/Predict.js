@@ -24,27 +24,30 @@ const styles = (theme) => ({
 
 class PredictPage extends Component {
   state = {
-    projects: [],
+    attempts: [],
+    projectid: this.props.match.params.projectid
   };
 
   componentDidMount() {
-    // const self = this;
-    // api
-    //   .get("/rxn/api/api/v1/projects")
-    //   .then(function (response) {
-    //     const items = response.data.payload.content;
+    const self = this;
+    api
+      .get("/rxn/api/api/v1/projects/"+this.state.projectid+"/attempts?raw={}&page=0&size=8&sort=createdOn,DESC")
+      .then(function (response) {
+        const items = response.data.payload.content;
 
-    //     let projects = [];
+        let attempts = [];
 
-    //     items.map((element, index) => {
-    //       projects.push({ key: element.id, name: element.name });
-    //     });
+        items.map((element, index) => {
+          attempts.push({ key: element.id, name: element.name });
+        });
 
-    //     self.setState({ projects: projects });
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
+        console.log(attempts);
+
+        self.setState({ attempts: attempts });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   render() {
@@ -53,6 +56,20 @@ class PredictPage extends Component {
     return (
       <>
         <Grid container spacing={3}>
+          <Grid item sm={12} xs={12} md={12} lg={6}>   
+            {this.state.attempts.map((attempt, index) => (
+              <Card className={classes.root} variant="outlined">
+                <CardContent>
+                  <Typography variant="h6" component="h3">
+                    {attempt.name}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button size="small">Select</Button>
+                </CardActions>
+              </Card>
+            ))}
+          </Grid>
           <Grid item sm={12} xs={12} md={12} lg={6}>   
             <form className={classes.root} noValidate autoComplete="off">
               <Card>
