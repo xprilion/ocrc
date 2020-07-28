@@ -1,4 +1,4 @@
 import HomePage from "./Home";
 import ProjectPage from "./Project";
-
-export { HomePage, ProjectPage };
+import PredictPage from "./Predict";
+export { HomePage, ProjectPage, PredictPage };

@@ -54,7 +54,7 @@ class HomePage extends Component {
         <div className={classes.root}>
           <Grid container spacing={3}>
             <Grid item sm={6} xs={12} md={4} lg={3}>
-              <Link to="/project" underline="none" component={RouterLink}>
+              <Link to="/add-project" underline="none" component={RouterLink}>
                 <Card className={classes.root} variant="elevation">
                   <CardContent>
                     <Typography variant="h6" component="h3">

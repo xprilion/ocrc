@@ -22,7 +22,7 @@ const styles = (theme) => ({
   },
 });
 
-class ProjectPage extends Component {
+class PredictPage extends Component {
   state = {
     projects: [],
   };
@@ -52,35 +52,37 @@ class ProjectPage extends Component {
 
     return (
       <>
-        <form className={classes.root} noValidate autoComplete="off">
-          <Card>
-            <CardContent>
-              <TextField label="Project Name" fullWidth={true} />
-              <br />
-              <br />
-              <TextField
-                label="Invited Email ID"
-                placeholder="Leave blank if not available"
-                fullWidth={true}
-              />
-              <br />
-              <br />
-            </CardContent>
-            <CardActions>
-              <Button variant="contained" color="primary">
-                Create Project
-              </Button>
-              <Link to="/" underline="none" component={RouterLink}>
-              <Button variant="contained" color="default">
-                Cancel
-              </Button>
-              </Link>
-            </CardActions>
-          </Card>
-        </form>
+        <Grid container spacing={3}>
+          <Grid item sm={12} xs={12} md={12} lg={6}>   
+            <form className={classes.root} noValidate autoComplete="off">
+              <Card>
+                <CardContent>
+                  <TextField label="Reactant Name" fullWidth={true} />
+                  <br />
+                  <br />
+                  <TextField
+                    label="Invited Email ID"
+                    placeholder="Leave blank if not available"
+                    fullWidth={true}
+                  />
+                  <br />
+                  <br />
+                </CardContent>
+                <CardActions>
+                  <Button variant="contained" color="primary">
+                    Create Project
+                  </Button>
+                  <Button variant="contained" color="default" href="/">
+                    Cancel
+                  </Button>
+                </CardActions>
+              </Card>
+            </form>
+          </Grid>
+        </Grid>
       </>
     );
   }
 }
 
-export default withStyles(styles)(ProjectPage);
+export default withStyles(styles)(PredictPage);

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { HomePage, ProjectPage } from "./pages";
+import { HomePage, ProjectPage, PredictPage } from "./pages";
 import * as serviceWorker from "./serviceWorker";
 import { Topbar } from "./components";
 
@@ -19,7 +19,8 @@ ReactDOM.render(
     <Container maxWidth="lg">
       <Router>
         <Switch>
-          <Route path="/project">
+          <Route exact path="/project/:projectid" component={PredictPage} />
+          <Route path="/add-project">
             <ProjectPage />
           </Route>
           <Route path="/">
